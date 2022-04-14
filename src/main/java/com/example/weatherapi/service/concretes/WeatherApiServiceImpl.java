@@ -45,7 +45,7 @@ public class WeatherApiServiceImpl implements WeatherApiService {
     }
 
     @Override
-    public ForecastWeatherApiDto getForecastWeatherApiWithParameter(String cityName, String airQualityIndex, Integer days, String alert) throws AirQualityIndexNotFormatException, AlertParameterNotFormatException, DayParameterInNotRangeException {
+    public ForecastWeatherApiRequest getForecastWeatherApiWithParameter(String cityName, String airQualityIndex, Integer days, String alert) throws AirQualityIndexNotFormatException, AlertParameterNotFormatException, DayParameterInNotRangeException {
         String url= UriConstant.FORECAST_URI +"key="+UriConstant.API_KEY +"&q="+cityName;
         if(checkIfDayInRange(days)) throw new DayParameterInNotRangeException(ErrorConstant.DAY_PARAMETER_IN_NOT_RANGE);
         url+="&days="+days;
@@ -58,7 +58,7 @@ public class WeatherApiServiceImpl implements WeatherApiService {
         if(checkIfAlertsIsYes(alert)) url+="&alert=yes";
         else if(!checkIfStrIsNo(alert)) throw new AlertParameterNotFormatException(ErrorConstant.ALERT_ERROR);
 
-        return this.modelMapperService.forDto().map(restTemplateService.getForForecastApiDto(url), ForecastWeatherApiDto.class);
+        return restTemplateService.getForForecastApiDto(url);
     }
 
     private boolean checkIfAiqIsYes(String aiq){

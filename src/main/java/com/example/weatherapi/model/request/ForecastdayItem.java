@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ForecastdayItem{
-
+ // dinlen daha sonra forecast day olarak dizi döndermiyor.
 	@JsonProperty("date")
 	private String date;
 
