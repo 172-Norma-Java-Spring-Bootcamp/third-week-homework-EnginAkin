@@ -1,17 +1,17 @@
-package com.example.weatherapi.service.dtos;
+package com.example.weatherapi.model.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ForecastWeather {
+public class AstroWeatherInfoDto {
 
-    private ArrayList<ForecastDay> forecastday;
+    private String sunrise;
+
+    private String sunset;
 
 }

@@ -1,13 +1,15 @@
 package com.example.weatherapi.service.abstracts;
 
-import com.example.weatherapi.core.exceptions.CityNameCannotFoundException;
-import com.example.weatherapi.core.exceptions.UnauthorizedException;
-import com.example.weatherapi.core.response.GeneralResponse;
+import com.example.weatherapi.core.exceptions.*;
+import com.example.weatherapi.model.dtos.CurrentWeatherDto;
+import com.example.weatherapi.model.dtos.ForecastWeatherApiDto;
+import com.example.weatherapi.model.request.CurrentWeatherApiRequest;
+import com.example.weatherapi.model.request.ForecastWeatherApiRequest;
 
 public interface WeatherApiService {
 
-    GeneralResponse getCurrentWeatherWithCityName(String cityName,String airQualityIndex) throws UnauthorizedException, CityNameCannotFoundException;
+    CurrentWeatherDto getCurrentWeatherWithCityName(String cityName, String airQualityIndex) throws UnauthorizedException, CityNameCannotFoundException, AirQualityIndexNotFormatException;
 
-    GeneralResponse getForecastWeatherApiWithParameter(String cityName,String airQualityIndex,Integer days,String alert)throws CityNameCannotFoundException,UnauthorizedException;
+    ForecastWeatherApiDto getForecastWeatherApiWithParameter(String cityName, String airQualityIndex, Integer days, String alert) throws CityNameCannotFoundException, UnauthorizedException, AirQualityIndexNotFormatException, AlertParameterNotFormatException, DayParameterInNotRangeException;
 
 }

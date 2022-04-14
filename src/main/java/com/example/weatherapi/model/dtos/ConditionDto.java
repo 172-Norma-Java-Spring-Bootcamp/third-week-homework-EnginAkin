@@ -1,4 +1,4 @@
-package com.example.weatherapi.service.dtos;
+package com.example.weatherapi.model.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Condition {
+public class ConditionDto {
     private String text;
-    private String icon;
-    private int code;
-
 }
