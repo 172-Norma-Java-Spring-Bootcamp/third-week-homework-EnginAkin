@@ -18,8 +18,7 @@ public class OnlyCityNameValidator implements ConstraintValidator<CheckCityName,
 
     @Override
     public boolean isValid(String cityName, ConstraintValidatorContext context) {
-        cityName=cityName.toLowerCase();
-        cityName=cityName.substring(0, 1).toUpperCase()+cityName.substring(1); // change first letter to upper case
+        cityName=cityName.toLowerCase().substring(0, 1).toUpperCase()+cityName.substring(1); // change first letter to upper case
         return restTemplateService.getAllCity(UriConstant.CITY_API_URI).contains(cityName);
     }
 }

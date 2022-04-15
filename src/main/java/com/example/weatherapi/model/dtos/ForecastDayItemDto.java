@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ForecastDayItemDto {
 
     private String date;

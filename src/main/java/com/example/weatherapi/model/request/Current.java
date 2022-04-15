@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Current{
 
 	@JsonProperty("feelslike_c")

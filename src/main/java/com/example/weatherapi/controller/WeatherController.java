@@ -25,6 +25,7 @@ public class WeatherController {
     public GeneralResponse getCurrentWeatherApi(@PathVariable("cityName") @CheckCityName String cityName, @RequestParam(value = "aqi:[a-zA-Z]*$",defaultValue = "no",required = false) String airQualityIndex) throws UnauthorizedException, AirQualityIndexNotFormatException {
         return  new GeneralSuccesfulResponse(weatherApiService.getCurrentWeatherWithCityName(cityName,airQualityIndex),"successfully");
     }
+
     @GetMapping(path = "/weather/forecast/{cityName}")
     public GeneralResponse getForecastWeatherApi(@PathVariable("cityName")  @CheckCityName String cityName // It checks whether the incoming city name variable CityAPi is also present.
                                                 , @RequestParam(value = "days",required = false,defaultValue = "1") @Min(1) @Max(10) Integer day
@@ -33,15 +34,10 @@ public class WeatherController {
         return new GeneralSuccesfulResponse(weatherApiService.getForecastWeatherApiWithParameter(cityName,airQualityIndex,day,alert),"successfully");
     }
 
-
     @GetMapping(path = "weather/history/{cityName}")
-    public GeneralResponse getHistoryWeatherApi(@PathVariable("city") @CheckCityName String cityName
+    public GeneralResponse getHistoryWeatherApi(@PathVariable("cityName") @CheckCityName String cityName
             , @RequestParam(value = "date") @CustomDateFormat @ExpectedDate String date){ // date format is yyyy-mm-dd and max 1 week before date access weather info
         return new GeneralSuccesfulResponse(weatherApiService.getHistoryWeatherApiWithDate(cityName,date),"successfully");
 
     }
-
-
-
-
 }
