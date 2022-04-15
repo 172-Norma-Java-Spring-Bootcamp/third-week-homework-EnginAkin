@@ -23,13 +23,13 @@ public class WeatherApiExceptionHandler extends ResponseEntityExceptionHandler{
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler
-    public GeneralResponse handleAiqException(AirQualityIndexNotFormatException exception){
+    public GeneralResponse handleAiqException(AirQualityIndexFormatException exception){
         return new GeneralErrorResponse(exception.getMessage());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler
-    public GeneralResponse handleAlertParameterException(AlertParameterNotFormatException exception){
+    public GeneralResponse handleAlertParameterException(AlertParameterFormatException exception){
         return new GeneralErrorResponse(exception.getMessage());
     }
 

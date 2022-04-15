@@ -22,7 +22,7 @@ public class WeatherController {
     private final WeatherApiService weatherApiService;
 
     @GetMapping(path = "/weather/current/{cityName}")
-    public GeneralResponse getCurrentWeatherApi(@PathVariable("cityName") @CheckCityName String cityName, @RequestParam(value = "aqi:[a-zA-Z]*$",defaultValue = "no",required = false) String airQualityIndex) throws UnauthorizedException, AirQualityIndexNotFormatException {
+    public GeneralResponse getCurrentWeatherApi(@PathVariable("cityName") @CheckCityName String cityName, @RequestParam(value = "aqi:[a-zA-Z]*$",defaultValue = "no",required = false) String airQualityIndex) throws UnauthorizedException, AirQualityIndexFormatException {
         return  new GeneralSuccesfulResponse(weatherApiService.getCurrentWeatherWithCityName(cityName,airQualityIndex),"successfully");
     }
 
@@ -30,7 +30,7 @@ public class WeatherController {
     public GeneralResponse getForecastWeatherApi(@PathVariable("cityName")  @CheckCityName String cityName // It checks whether the incoming city name variable CityAPi is also present.
                                                 , @RequestParam(value = "days",required = false,defaultValue = "1") @Min(1) @Max(10) Integer day
                                                 , @RequestParam(value = "aqi",required = false,defaultValue = "no") String airQualityIndex
-                                                , @RequestParam(value = "alert",required = false,defaultValue = "no") String alert) throws UnauthorizedException, AirQualityIndexNotFormatException, AlertParameterNotFormatException {
+                                                , @RequestParam(value = "alert",required = false,defaultValue = "no") String alert) throws UnauthorizedException, AirQualityIndexFormatException, AlertParameterFormatException {
         return new GeneralSuccesfulResponse(weatherApiService.getForecastWeatherApiWithParameter(cityName,airQualityIndex,day,alert),"successfully");
     }
 

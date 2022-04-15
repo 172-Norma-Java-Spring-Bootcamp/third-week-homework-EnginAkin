@@ -2,13 +2,12 @@ package com.example.weatherapi.service.concretes;
 
 import com.example.weatherapi.core.constant.ErrorConstant;
 import com.example.weatherapi.core.constant.UriConstant;
-import com.example.weatherapi.core.exceptions.AirQualityIndexNotFormatException;
-import com.example.weatherapi.core.exceptions.AlertParameterNotFormatException;
+import com.example.weatherapi.core.exceptions.AirQualityIndexFormatException;
+import com.example.weatherapi.core.exceptions.AlertParameterFormatException;
 import com.example.weatherapi.core.utilities.mapper.ModelMapperService;
 import com.example.weatherapi.model.dtos.CurrentWeatherDto;
 import com.example.weatherapi.model.dtos.ForecastWeatherApiDto;
 import com.example.weatherapi.model.dtos.HistoryWeatherApiDto;
-import com.example.weatherapi.model.request.HistoryWeatherApiRequest;
 import com.example.weatherapi.service.abstracts.RestTemplateService;
 import com.example.weatherapi.service.abstracts.WeatherApiService;
 import lombok.RequiredArgsConstructor;
@@ -28,13 +27,13 @@ public class WeatherApiServiceImpl implements WeatherApiService {
         this.modelMapperService=modelMapperService;
     }
     @Override
-    public CurrentWeatherDto getCurrentWeatherWithCityName(String cityName, String airQualityIndex) throws AirQualityIndexNotFormatException {
+    public CurrentWeatherDto getCurrentWeatherWithCityName(String cityName, String airQualityIndex) throws AirQualityIndexFormatException {
         String url= setParameterCurrentWeatherUrl(cityName,airQualityIndex);
         return this.modelMapperService.forDto().map(restTemplateService.getForCurrentApiRequest(url),CurrentWeatherDto.class);
 
     }
     @Override
-    public ForecastWeatherApiDto getForecastWeatherApiWithParameter(String cityName, String airQualityIndex, Integer days, String alert) throws AirQualityIndexNotFormatException, AlertParameterNotFormatException {
+    public ForecastWeatherApiDto getForecastWeatherApiWithParameter(String cityName, String airQualityIndex, Integer days, String alert) throws AirQualityIndexFormatException, AlertParameterFormatException {
         String url= setParameterForecastWeatherUrl(cityName,airQualityIndex,days,alert);
         return this.modelMapperService.forDto().map(restTemplateService.getForForecastApiRequest(url),ForecastWeatherApiDto.class);
     }
@@ -45,19 +44,19 @@ public class WeatherApiServiceImpl implements WeatherApiService {
         return this.modelMapperService.forDto().map(restTemplateService.getHistoryWeatherApiRequest(url), HistoryWeatherApiDto.class);
     }
 
-    private String setParameterForecastWeatherUrl(String cityName, String airQualityIndex, Integer days, String alert) throws AirQualityIndexNotFormatException, AlertParameterNotFormatException {
+    private String setParameterForecastWeatherUrl(String cityName, String airQualityIndex, Integer days, String alert) throws AirQualityIndexFormatException, AlertParameterFormatException {
         String url= UriConstant.FORECAST_URI +"key="+UriConstant.API_KEY +"&q="+cityName;
         url+="&days="+days;
         if(checkIfAiqIsYes(airQualityIndex)) url+="&aqi=yes";
-        else if(!checkIfStrIsNo(airQualityIndex)) throw new AirQualityIndexNotFormatException(ErrorConstant.AIR_QUALITY_ERROR);
+        else if(!checkIfStrIsNo(airQualityIndex)) throw new AirQualityIndexFormatException(ErrorConstant.AIR_QUALITY_ERROR);
         if(checkIfAlertsIsYes(alert)) url+="&alert=yes";
-        else if(!checkIfStrIsNo(alert)) throw new AlertParameterNotFormatException(ErrorConstant.ALERT_ERROR);
+        else if(!checkIfStrIsNo(alert)) throw new AlertParameterFormatException(ErrorConstant.ALERT_ERROR);
         return url;
     }
-    private String setParameterCurrentWeatherUrl(String cityName, String airQualityIndex) throws AirQualityIndexNotFormatException {
+    private String setParameterCurrentWeatherUrl(String cityName, String airQualityIndex) throws AirQualityIndexFormatException {
         String url= UriConstant.CURRENT_URI +"key="+UriConstant.API_KEY +"&q="+cityName;
         if(checkIfAiqIsYes(airQualityIndex)) url+="&aqi=yes";
-        else if(!checkIfStrIsNo(airQualityIndex)) throw new AirQualityIndexNotFormatException(ErrorConstant.AIR_QUALITY_ERROR);
+        else if(!checkIfStrIsNo(airQualityIndex)) throw new AirQualityIndexFormatException(ErrorConstant.AIR_QUALITY_ERROR);
         return url;
     }
     private boolean checkIfAiqIsYes(String aiq){

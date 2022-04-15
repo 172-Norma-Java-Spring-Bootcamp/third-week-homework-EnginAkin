@@ -12,9 +12,7 @@ import javax.validation.ConstraintValidatorContext;
 @Data
 public class OnlyCityNameValidator implements ConstraintValidator<CheckCityName,String> {
 
-
     private final RestTemplateService restTemplateService;
-
 
     @Override
     public boolean isValid(String cityName, ConstraintValidatorContext context) {
