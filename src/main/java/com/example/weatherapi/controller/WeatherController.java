@@ -23,7 +23,9 @@ public class WeatherController {
 
     @GetMapping(path = "/weather/current/{cityName}")
     public GeneralResponse getCurrentWeatherApi(@PathVariable("cityName") @CheckCityName String cityName, @RequestParam(value = "aqi:[a-zA-Z]*$",defaultValue = "no",required = false) String airQualityIndex) throws UnauthorizedException, AirQualityIndexFormatException {
-        return  new GeneralSuccesfulResponse(weatherApiService.getCurrentWeatherWithCityName(cityName,airQualityIndex),"successfully");
+        return GeneralSuccesfulResponse.of()
+                .data(weatherApiService.getCurrentWeatherWithCityName(cityName,airQualityIndex))
+                .message("successfully").build();
     }
 
     @GetMapping(path = "/weather/forecast/{cityName}")
@@ -31,13 +33,17 @@ public class WeatherController {
                                                 , @RequestParam(value = "days",required = false,defaultValue = "1") @Min(1) @Max(10) Integer day
                                                 , @RequestParam(value = "aqi",required = false,defaultValue = "no") String airQualityIndex
                                                 , @RequestParam(value = "alert",required = false,defaultValue = "no") String alert) throws UnauthorizedException, AirQualityIndexFormatException, AlertParameterFormatException {
-        return new GeneralSuccesfulResponse(weatherApiService.getForecastWeatherApiWithParameter(cityName,airQualityIndex,day,alert),"successfully");
+        return GeneralSuccesfulResponse.of()
+                .data(weatherApiService.getForecastWeatherApiWithParameter(cityName,airQualityIndex,day,alert))
+                .message("successfully").build();
     }
 
     @GetMapping(path = "weather/history/{cityName}")
     public GeneralResponse getHistoryWeatherApi(@PathVariable("cityName") @CheckCityName String cityName
             , @RequestParam(value = "date") @CustomDateFormat @ExpectedDate String date){ // date format is yyyy-mm-dd and max 1 week before date access weather info
-        return new GeneralSuccesfulResponse(weatherApiService.getHistoryWeatherApiWithDate(cityName,date),"successfully");
+        return GeneralSuccesfulResponse.of()
+                .data(weatherApiService.getHistoryWeatherApiWithDate(cityName,date))
+                .message("successfully").build();
 
     }
 }

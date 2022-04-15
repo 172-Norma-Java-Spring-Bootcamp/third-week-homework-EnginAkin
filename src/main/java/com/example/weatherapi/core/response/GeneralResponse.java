@@ -1,13 +1,11 @@
 package com.example.weatherapi.core.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder(builderMethodName = "of")
 public class GeneralResponse {
     private Object data;
     private String message;

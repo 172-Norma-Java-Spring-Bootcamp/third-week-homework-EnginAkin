@@ -2,6 +2,7 @@ package com.example.weatherapi.core.exceptions;
 
 import com.example.weatherapi.core.response.GeneralErrorResponse;
 import com.example.weatherapi.core.response.GeneralResponse;
+import com.example.weatherapi.core.response.GeneralSuccesfulResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -17,27 +18,26 @@ public class WeatherApiExceptionHandler extends ResponseEntityExceptionHandler{
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler
     public GeneralResponse handleUnauthorizedException(HttpClientErrorException exception){
-        return new GeneralErrorResponse(exception.getMessage());
-
+        return GeneralErrorResponse.of().message(exception.getMessage()).build();
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler
     public GeneralResponse handleAiqException(AirQualityIndexFormatException exception){
-        return new GeneralErrorResponse(exception.getMessage());
+        return GeneralErrorResponse.of().message(exception.getMessage()).build();
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler
     public GeneralResponse handleAlertParameterException(AlertParameterFormatException exception){
-        return new GeneralErrorResponse(exception.getMessage());
+        return GeneralErrorResponse.of().message(exception.getMessage()).build();
     }
 
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler
     public GeneralResponse handleValidationException(ConstraintViolationException exception){
-        return new GeneralErrorResponse(exception.getMessage());
+        return GeneralErrorResponse.of().message(exception.getMessage()).build();
     }
 
 
