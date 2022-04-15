@@ -34,9 +34,9 @@ public class WeatherController {
     }
 
 
-    @GetMapping(path = "weather/history/{city}")
+    @GetMapping(path = "weather/history/{cityName}")
     public GeneralResponse getHistoryWeatherApi(@PathVariable("city") @CheckCityName String city
-            , @RequestParam(value = "date") @CustomDateFormat @ExpectedDate String date){ // date format is yyyy-mm-dd and max 1 week before date access weather info  
+            , @RequestParam(value = "date") @CustomDateFormat @ExpectedDate String date){ // date format is yyyy-mm-dd and max 1 week before date access weather info
         return new GeneralSuccesfulResponse(weatherApiService.getHistoryWeatherApiWithDate(city,date),"successfully");
 
     }
