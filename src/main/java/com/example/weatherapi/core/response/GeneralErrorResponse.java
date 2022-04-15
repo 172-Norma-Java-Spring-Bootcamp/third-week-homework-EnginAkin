@@ -1,7 +1,10 @@
 package com.example.weatherapi.core.response;
 
-public class GeneralErrorResponse extends GeneralResponse{
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
+public class GeneralErrorResponse extends GeneralResponse{
 
     public GeneralErrorResponse() {
         super(false);

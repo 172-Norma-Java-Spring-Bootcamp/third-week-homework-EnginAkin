@@ -7,4 +7,5 @@ public class ErrorConstant {
     public static final String DAY_PARAMETER_IN_NOT_RANGE ="Day must be in 0 to 10" ;
     public static final String CUSTOM_DATE_FORMAT_ERROR = "Date format must be yy-mm-dd";
     public static final String CHECK_CITY_NAME_ERROR = "incoming city name variable did not match any city";
+    public static final String CHECK_DATE_AFTER_LAST_WEEK_ERROR = "You can access data for a maximum of one week. Please enter an earlier date.";
 }

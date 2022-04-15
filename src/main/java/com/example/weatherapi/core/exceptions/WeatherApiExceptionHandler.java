@@ -17,10 +17,7 @@ public class WeatherApiExceptionHandler extends ResponseEntityExceptionHandler{
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler
     public GeneralResponse handleUnauthorizedException(HttpClientErrorException exception){
-        if(exception.getStatusCode()==HttpStatus.BAD_REQUEST){
-            return new GeneralErrorResponse("City name No matching location found");
-        }
-        return new GeneralErrorResponse("Api Key not valid");
+        return new GeneralErrorResponse(exception.getMessage());
 
     }
 

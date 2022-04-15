@@ -1,5 +1,6 @@
 package com.example.weatherapi.controller;
 
+import com.example.weatherapi.core.annotations.ExpectedDate;
 import com.example.weatherapi.core.exceptions.*;
 import com.example.weatherapi.core.annotations.CheckCityName;
 import com.example.weatherapi.core.annotations.CustomDateFormat;
@@ -34,9 +35,10 @@ public class WeatherController {
 
 
     @GetMapping(path = "weather/history/{city}")
-    public GeneralResponse getHistoryWeatherApi(@PathVariable("city") @CheckCityName String city, @RequestParam(value = "date") @CustomDateFormat String date){
-
+    public GeneralResponse getHistoryWeatherApi(@PathVariable("city") @CheckCityName String city
+            , @RequestParam(value = "date") @CustomDateFormat @ExpectedDate String date){ // date format is yyyy-mm-dd and max 1 week before date access weather info  
         return new GeneralSuccesfulResponse(weatherApiService.getHistoryWeatherApiWithDate(city,date),"successfully");
+
     }
 
 

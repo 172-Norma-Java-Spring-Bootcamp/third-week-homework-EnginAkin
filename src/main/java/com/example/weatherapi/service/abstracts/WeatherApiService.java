@@ -7,6 +7,7 @@ import com.example.weatherapi.model.dtos.HistoryWeatherApiDto;
 import com.example.weatherapi.model.request.CurrentWeatherApiRequest;
 import com.example.weatherapi.model.request.ForecastWeatherApiRequest;
 import com.example.weatherapi.model.request.HistoryWeatherApiRequest;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface WeatherApiService {
     ForecastWeatherApiDto getForecastWeatherApiWithParameter(String cityName, String airQualityIndex, Integer days, String alert) throws UnauthorizedException, AirQualityIndexNotFormatException, AlertParameterNotFormatException;
 
 
-    HistoryWeatherApiDto getHistoryWeatherApiWithDate(String city, String date);
+    HistoryWeatherApiDto getHistoryWeatherApiWithDate(String city, String date) throws HttpClientErrorException;
 }
