@@ -40,6 +40,15 @@ public class WeatherApiExceptionHandler extends ResponseEntityExceptionHandler{
         return new GeneralErrorResponse(exception.getMessage());
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler
+    public GeneralResponse handleCityCannotFoundException(CityCannotFoundException exception){
+        return new GeneralErrorResponse(exception.getMessage());
+    }
+
+
+
+
 
 
 
