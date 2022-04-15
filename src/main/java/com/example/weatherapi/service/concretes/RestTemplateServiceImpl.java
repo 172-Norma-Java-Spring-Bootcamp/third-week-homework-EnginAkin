@@ -1,5 +1,6 @@
 package com.example.weatherapi.service.concretes;
 
+import com.example.weatherapi.model.request.HistoryWeatherApiRequest;
 import com.example.weatherapi.model.request.cities.CountryWithCity;
 import com.example.weatherapi.model.request.cities.DataItem;
 import com.example.weatherapi.service.abstracts.RestTemplateService;
@@ -37,5 +38,10 @@ public class RestTemplateServiceImpl implements RestTemplateService {
             cities.addAll(data.getCities());
         }
         return cities;
+    }
+
+    @Override
+    public HistoryWeatherApiRequest getHistoryWeatherApiRequest(String url) {
+        return this.restTemplate.getForEntity(url,HistoryWeatherApiRequest.class).getBody();
     }
 }

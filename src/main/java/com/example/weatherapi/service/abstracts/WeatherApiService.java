@@ -5,14 +5,16 @@ import com.example.weatherapi.model.dtos.CurrentWeatherDto;
 import com.example.weatherapi.model.dtos.ForecastWeatherApiDto;
 import com.example.weatherapi.model.request.CurrentWeatherApiRequest;
 import com.example.weatherapi.model.request.ForecastWeatherApiRequest;
+import com.example.weatherapi.model.request.HistoryWeatherApiRequest;
 
 import java.util.List;
 
 public interface WeatherApiService {
 
-    CurrentWeatherDto getCurrentWeatherWithCityName(String cityName, String airQualityIndex) throws UnauthorizedException, CityNameCannotFoundException, AirQualityIndexNotFormatException, CityCannotFoundException;
+    CurrentWeatherDto getCurrentWeatherWithCityName(String cityName, String airQualityIndex) throws UnauthorizedException, AirQualityIndexNotFormatException;
 
-    ForecastWeatherApiDto getForecastWeatherApiWithParameter(String cityName, String airQualityIndex, Integer days, String alert) throws CityNameCannotFoundException, UnauthorizedException, AirQualityIndexNotFormatException, AlertParameterNotFormatException, DayParameterInNotRangeException, CityCannotFoundException;
-    Boolean getAllCity(String city) throws CityCannotFoundException;
+    ForecastWeatherApiDto getForecastWeatherApiWithParameter(String cityName, String airQualityIndex, Integer days, String alert) throws UnauthorizedException, AirQualityIndexNotFormatException, AlertParameterNotFormatException;
 
+
+    HistoryWeatherApiRequest getHistoryWeatherApiWithDate(String city, String date);
 }

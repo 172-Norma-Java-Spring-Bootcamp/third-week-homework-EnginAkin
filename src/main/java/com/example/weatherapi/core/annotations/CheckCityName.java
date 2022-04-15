@@ -1,4 +1,6 @@
-package com.example.weatherapi.core.model;
+package com.example.weatherapi.core.annotations;
+
+import com.example.weatherapi.core.constant.ErrorConstant;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -12,9 +14,9 @@ import javax.validation.Payload;
 @Target({ FIELD,METHOD ,PARAMETER})
 @Retention(RUNTIME)
 @Constraint(validatedBy = { OnlyCityNameValidator.class })
-public @interface OnlyCityName {
+public @interface CheckCityName {
 
-    String message() default "Şehir isimleri arasında bulunamadı";
+    String message() default ErrorConstant.CHECK_CITY_NAME_ERROR;
 
     Class<?>[] groups() default { };
 

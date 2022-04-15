@@ -6,14 +6,11 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class Condition{
+public class HistoryWeatherApiRequest{
 
-	@JsonProperty("code")
-	private int code;
+	@JsonProperty("location")
+	private Location location;
 
-	@JsonProperty("icon")
-	private String icon;
-
-	@JsonProperty("text")
-	private String text;
+	@JsonProperty("forecast")
+	private Forecast forecast;
 }

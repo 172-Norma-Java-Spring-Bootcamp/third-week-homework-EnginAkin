@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
+
 @RestControllerAdvice
 public class WeatherApiExceptionHandler extends ResponseEntityExceptionHandler{
 
@@ -34,15 +36,10 @@ public class WeatherApiExceptionHandler extends ResponseEntityExceptionHandler{
         return new GeneralErrorResponse(exception.getMessage());
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler
-    public GeneralResponse handleDayInNotParameterException(DayParameterInNotRangeException exception){
-        return new GeneralErrorResponse(exception.getMessage());
-    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler
-    public GeneralResponse handleCityCannotFoundException(CityCannotFoundException exception){
+    public GeneralResponse handleValidationException(ConstraintViolationException exception){
         return new GeneralErrorResponse(exception.getMessage());
     }
 
