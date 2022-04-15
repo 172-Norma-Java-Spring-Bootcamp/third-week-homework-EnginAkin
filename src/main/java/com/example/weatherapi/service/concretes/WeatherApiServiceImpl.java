@@ -7,6 +7,7 @@ import com.example.weatherapi.core.exceptions.AlertParameterNotFormatException;
 import com.example.weatherapi.core.utilities.mapper.ModelMapperService;
 import com.example.weatherapi.model.dtos.CurrentWeatherDto;
 import com.example.weatherapi.model.dtos.ForecastWeatherApiDto;
+import com.example.weatherapi.model.dtos.HistoryWeatherApiDto;
 import com.example.weatherapi.model.request.HistoryWeatherApiRequest;
 import com.example.weatherapi.service.abstracts.RestTemplateService;
 import com.example.weatherapi.service.abstracts.WeatherApiService;
@@ -39,10 +40,9 @@ public class WeatherApiServiceImpl implements WeatherApiService {
     }
 
     @Override
-    public HistoryWeatherApiRequest getHistoryWeatherApiWithDate(String city, String date) {
+    public HistoryWeatherApiDto getHistoryWeatherApiWithDate(String city, String date) {
         String url= UriConstant.HISTORY_WEATHER_API_URI +"key="+UriConstant.API_KEY +"&q="+city+"&dt="+date;
-        HistoryWeatherApiRequest historyWeatherApiRequest=restTemplateService.getHistoryWeatherApiRequest(url);
-        return historyWeatherApiRequest;
+        return this.modelMapperService.forDto().map(restTemplateService.getHistoryWeatherApiRequest(url), HistoryWeatherApiDto.class);
     }
 
     private String setParameterForecastWeatherUrl(String cityName, String airQualityIndex, Integer days, String alert) throws AirQualityIndexNotFormatException, AlertParameterNotFormatException {

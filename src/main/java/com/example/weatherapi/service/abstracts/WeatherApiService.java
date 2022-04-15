@@ -3,6 +3,7 @@ package com.example.weatherapi.service.abstracts;
 import com.example.weatherapi.core.exceptions.*;
 import com.example.weatherapi.model.dtos.CurrentWeatherDto;
 import com.example.weatherapi.model.dtos.ForecastWeatherApiDto;
+import com.example.weatherapi.model.dtos.HistoryWeatherApiDto;
 import com.example.weatherapi.model.request.CurrentWeatherApiRequest;
 import com.example.weatherapi.model.request.ForecastWeatherApiRequest;
 import com.example.weatherapi.model.request.HistoryWeatherApiRequest;
@@ -16,5 +17,5 @@ public interface WeatherApiService {
     ForecastWeatherApiDto getForecastWeatherApiWithParameter(String cityName, String airQualityIndex, Integer days, String alert) throws UnauthorizedException, AirQualityIndexNotFormatException, AlertParameterNotFormatException;
 
 
-    HistoryWeatherApiRequest getHistoryWeatherApiWithDate(String city, String date);
+    HistoryWeatherApiDto getHistoryWeatherApiWithDate(String city, String date);
 }
