@@ -6,7 +6,7 @@ import com.example.weatherapi.core.annotations.CheckCityName;
 import com.example.weatherapi.core.annotations.CustomDateFormat;
 import com.example.weatherapi.core.response.GeneralResponse;
 import com.example.weatherapi.core.response.GeneralSuccesfulResponse;
-import com.example.weatherapi.service.abstracts.WeatherApiService;
+import com.example.weatherapi.service.abstracts.WeatherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +19,12 @@ import javax.validation.constraints.*;
 @Validated
 public class WeatherController {
 
-    private final WeatherApiService weatherApiService;
+    private final WeatherService weatherService;
 
     @GetMapping(path = "/weather/current/{cityName}")
     public GeneralResponse getCurrentWeatherApi(@PathVariable("cityName") @CheckCityName String cityName, @RequestParam(value = "aqi:[a-zA-Z]*$",defaultValue = "no",required = false) String airQualityIndex) throws UnauthorizedException, AirQualityIndexFormatException {
         return GeneralSuccesfulResponse.of()
-                .data(weatherApiService.getCurrentWeatherWithCityName(cityName,airQualityIndex))
+                .data(weatherService.getCurrentWeatherWithCityName(cityName,airQualityIndex))
                 .message("successfully").build();
     }
 
@@ -34,7 +34,7 @@ public class WeatherController {
                                                 , @RequestParam(value = "aqi",required = false,defaultValue = "no") String airQualityIndex
                                                 , @RequestParam(value = "alert",required = false,defaultValue = "no") String alert) throws UnauthorizedException, AirQualityIndexFormatException, AlertParameterFormatException {
         return GeneralSuccesfulResponse.of()
-                .data(weatherApiService.getForecastWeatherApiWithParameter(cityName,airQualityIndex,day,alert))
+                .data(weatherService.getForecastWeatherApiWithParameter(cityName,airQualityIndex,day,alert))
                 .message("successfully").build();
     }
 
@@ -42,7 +42,7 @@ public class WeatherController {
     public GeneralResponse getHistoryWeatherApi(@PathVariable("cityName") @CheckCityName String cityName
             , @RequestParam(value = "date") @CustomDateFormat @ExpectedDate String date){ // date format is yyyy-mm-dd and max 1 week before date access weather info
         return GeneralSuccesfulResponse.of()
-                .data(weatherApiService.getHistoryWeatherApiWithDate(cityName,date))
+                .data(weatherService.getHistoryWeatherApiWithDate(cityName,date))
                 .message("successfully").build();
 
     }

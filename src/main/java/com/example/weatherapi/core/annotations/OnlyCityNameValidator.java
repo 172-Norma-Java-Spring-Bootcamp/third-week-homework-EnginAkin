@@ -1,7 +1,7 @@
 package com.example.weatherapi.core.annotations;
 
 import com.example.weatherapi.core.constant.UriConstant;
-import com.example.weatherapi.service.abstracts.RestTemplateService;
+import com.example.weatherapi.service.abstracts.CountrySnowApiService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -12,12 +12,12 @@ import javax.validation.ConstraintValidatorContext;
 @Data
 public class OnlyCityNameValidator implements ConstraintValidator<CheckCityName,String> {
 
-    private final RestTemplateService restTemplateService;
+    private final CountrySnowApiService countrySnowApiService;
 
     @Override
     public boolean isValid(String cityName, ConstraintValidatorContext context) {
         cityName=cityName.toLowerCase().substring(0, 1).toUpperCase()+cityName.substring(1); // change first letter to upper case
-        return restTemplateService.getAllCity(UriConstant.CITY_API_URI).contains(cityName);
+        return countrySnowApiService.getAllCity(UriConstant.CITY_API_URI).contains(cityName);
     }
 }
 
