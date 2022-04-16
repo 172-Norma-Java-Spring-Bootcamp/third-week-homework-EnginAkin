@@ -2,15 +2,14 @@ package com.example.weatherapi.service.concretes;
 
 import com.example.weatherapi.core.constant.ErrorConstant;
 import com.example.weatherapi.core.constant.UriConstant;
-import com.example.weatherapi.core.exceptions.AirQualityIndexFormatException;
-import com.example.weatherapi.core.exceptions.AlertParameterFormatException;
-import com.example.weatherapi.core.utilities.mapper.ModelMapperService;
-import com.example.weatherapi.model.dtos.CurrentWeatherDto;
-import com.example.weatherapi.model.dtos.ForecastWeatherApiDto;
-import com.example.weatherapi.model.dtos.HistoryWeatherApiDto;
+import com.example.weatherapi.core.exception.AirQualityIndexFormatException;
+import com.example.weatherapi.core.exception.AlertParameterFormatException;
+import com.example.weatherapi.core.utility.mapper.ModelMapperService;
+import com.example.weatherapi.model.dto.CurrentWeatherDto;
+import com.example.weatherapi.model.dto.ForecastWeatherApiDto;
+import com.example.weatherapi.model.dto.HistoryWeatherApiDto;
 import com.example.weatherapi.service.abstracts.WeatherApiService;
 import com.example.weatherapi.service.abstracts.WeatherService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
