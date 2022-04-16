@@ -3,8 +3,12 @@ package com.example.weatherapi.model.dto;
 import com.example.weatherapi.model.request.Alerts;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Getter
+@Setter
 public class ForecastWeatherApiDto {
 
     private Alerts alerts;

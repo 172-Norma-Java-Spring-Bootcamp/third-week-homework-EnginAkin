@@ -1,8 +1,12 @@
 package com.example.weatherapi.model.dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Getter
+@Setter
 public class HourWeatherInfoDto {
 
 	private double tempC;

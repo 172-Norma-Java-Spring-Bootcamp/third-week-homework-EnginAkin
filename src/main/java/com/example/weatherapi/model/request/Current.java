@@ -1,12 +1,11 @@
 package com.example.weatherapi.model.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
-@Data
+
+@Getter
+@Setter
 public class Current{
 
 	@JsonProperty("feelslike_c")

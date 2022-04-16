@@ -2,8 +2,12 @@ package com.example.weatherapi.model.dto;
 
 import com.example.weatherapi.model.request.AirQuality;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Getter
+@Setter
 public class CurrentDto {
     private double feelslikeC;
 
