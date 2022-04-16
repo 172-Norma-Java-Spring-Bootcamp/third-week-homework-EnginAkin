@@ -1,9 +1,9 @@
 package com.example.weatherapi.controller;
 
-import com.example.weatherapi.core.annotations.ExpectedDate;
-import com.example.weatherapi.core.exceptions.*;
-import com.example.weatherapi.core.annotations.CheckCityName;
-import com.example.weatherapi.core.annotations.CustomDateFormat;
+import com.example.weatherapi.core.annotation.ExpectedDate;
+import com.example.weatherapi.core.exception.*;
+import com.example.weatherapi.core.annotation.CheckCityName;
+import com.example.weatherapi.core.annotation.CustomDateFormat;
 import com.example.weatherapi.core.response.GeneralResponse;
 import com.example.weatherapi.core.response.GeneralSuccesfulResponse;
 import com.example.weatherapi.service.abstracts.WeatherService;

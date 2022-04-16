@@ -1,9 +1,9 @@
 package com.example.weatherapi.service.abstracts;
 
-import com.example.weatherapi.core.exceptions.*;
-import com.example.weatherapi.model.dtos.CurrentWeatherDto;
-import com.example.weatherapi.model.dtos.ForecastWeatherApiDto;
-import com.example.weatherapi.model.dtos.HistoryWeatherApiDto;
+import com.example.weatherapi.core.exception.*;
+import com.example.weatherapi.model.dto.CurrentWeatherDto;
+import com.example.weatherapi.model.dto.ForecastWeatherApiDto;
+import com.example.weatherapi.model.dto.HistoryWeatherApiDto;
 import org.springframework.web.client.HttpClientErrorException;
 
 public interface WeatherService {

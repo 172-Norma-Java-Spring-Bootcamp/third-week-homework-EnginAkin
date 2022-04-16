@@ -1,9 +1,8 @@
 package com.example.weatherapi.service.concretes;
 
-import com.example.weatherapi.model.request.cities.CountryWithCity;
-import com.example.weatherapi.model.request.cities.DataItem;
+import com.example.weatherapi.model.request.city.CountryWithCity;
+import com.example.weatherapi.model.request.city.DataItem;
 import com.example.weatherapi.service.abstracts.CountrySnowApiService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
