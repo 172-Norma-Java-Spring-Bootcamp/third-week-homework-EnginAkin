@@ -12,10 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CountrySnowApiServiceImpl implements CountrySnowApiService {
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Autowired
     public CountrySnowApiServiceImpl(RestTemplate restTemplate) {

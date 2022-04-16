@@ -15,12 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class WeatherServiceImpl implements WeatherService {
 
-    private ModelMapperService modelMapperService;
+    private final ModelMapperService modelMapperService;
 
-    private WeatherApiService weatherApiService;
+    private final WeatherApiService weatherApiService;
 
     @Autowired
     public WeatherServiceImpl(ModelMapperService modelMapperService, WeatherApiService weatherApiService){
